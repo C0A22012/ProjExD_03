@@ -154,13 +154,21 @@ def main():
                 pg.display.update()
                 time.sleep(1)
                 return
+<<<<<<< HEAD
+=======
+
+>>>>>>> bomb
         for i, bomb in enumerate(bombs):
             if beam is not None:
                 if bomb.rct.colliderect(beam.rct):
                     bombs[i] = None
                     beam = None
                     bird.change_img(6, screen)
+<<<<<<< HEAD
                     pg.display.update()
+=======
+                    pg.display.update()              
+>>>>>>> bomb
 
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)

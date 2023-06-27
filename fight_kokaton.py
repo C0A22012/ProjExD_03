@@ -20,6 +20,30 @@ def check_bound(obj_rct: pg.Rect) -> tuple[bool, bool]:
     if obj_rct.top < 0 or HEIGHT < obj_rct.bottom:
         tate = False
     return yoko, tate
+
+
+class Explosion:
+    def __init__(self, life: int):
+        """
+        爆発に関するクラス
+        """
+        img = pg.image.load("ex03/fig/explosion.gif")
+        self._imgs = [img, pg.transform.flip(img, 1, 1)]
+        self._img = self._imgs
+        self._rct = self._img
+
+    def update(self, num: int, screen: pg.Surface):
+        """
+        爆発画像リストを交互に切り替えて爆発を演出
+        引数1 num：爆発画像ファイル名の番号
+        引数2 screen：画面Surface
+        """
+        life -= 1
+
+
+
+
+
 class Bird:
     """
     ゲームキャラクター（こうかとん）に関するクラス
@@ -40,8 +64,7 @@ class Bird:
         img = pg.transform.flip(img0, True, False) #右向き
         self.imgs = {
             (+5, 0): img,  #右
-            (+5, -5):
-            pg.transform.rotozoom(img, 45, 1.0),  # 右上
+            (+5, -5): pg.transform.rotozoom(img, 45, 1.0),  # 右上
             (0, -5): pg.transform.rotozoom(img, 90, 1.0),  # 上
             (-5, -5): pg.transform.rotozoom(img0, -45, 1.0),  # 左上
             (-5, 0): img0,  # 左
@@ -135,6 +158,7 @@ def main():
     # bomb = Bomb((255, 0, 0), 10)
     bombs = [Bomb((255, 0, 0), 10) for _ in range(NUM_OF_BOMBS)]
     beam = None
+    
 
     clock = pg.time.Clock()
     tmr = 0
